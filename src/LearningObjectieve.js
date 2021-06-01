@@ -2,15 +2,7 @@ import { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 
 export const LearningObjectieve = () => {
-    const topic = [{LearningObjectieve: ""}]
-    const [topics, setTopics] = useState(topic);
-    const handleAdd = (e) => {
-        const { name, value } = e.target;
-        if(name === "LearningObjectieve"){
-            setTopics((preTitle) => value);
-        }
-        
-    }
+    
     return (
     <>
     <Form.Group controlId="formBasicEmail">

@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 
 import { Form, Button } from "react-bootstrap";
+import { DeleteTopic } from "./DeleteTopic";
 
 export function SyllabusForm(props) {
   const [title, setTitle] = useState(props.title);
   const [desc, setDesc] = useState(props.desc);
+  const [topic, setTopic] = useState();
+  const [learningObjectieve, setLearningObjectieve] = useState([]);
 
   const handleFormControlChange = (event) => {
     const { name, value } = event.target;
@@ -16,8 +19,7 @@ export function SyllabusForm(props) {
     }
     
   };
-  const [topic, setTopic] = useState();
-  const [learningObjectieve, setLearningObjectieve] = useState([]);
+
   const handleChange = (e) => {
     setTopic(e.target.value);
 
@@ -31,6 +33,15 @@ export function SyllabusForm(props) {
     });
     setTopic("");
   }
+  const handleDeleteTopics = (id) => {
+    setLearningObjectieve((oldlearningObjectieves) => {
+      return oldlearningObjectieves.filter((learningObjectieve, index) => {
+        return index !== id;
+      })
+    })
+    
+  }
+
   return (
     <Form>
       <Form.Group controlId="formBasicEmail">
@@ -65,12 +76,16 @@ export function SyllabusForm(props) {
         <Form.Text className="text-muted"></Form.Text>
         
       </Form.Group>
-      <Button variant="primary" onClick={(e)=>{handleAdd(e)}}>
+      <Button variant="primary" onClick={(e, index)=>{handleAdd(e, index)}}>
         Add
       </Button>
       <div>
-         {learningObjectieve.map(learn => {
-           return <li>{learn}</li>
+         {learningObjectieve.map((learn, index) => {
+           return <>
+           <li>{learn}
+           <DeleteTopic id= {index} handleDelete={handleDeleteTopics}/>
+           </li>
+           </>
          })}
       </div>
       <Button variant="primary" onClick={handleSaveForm}>
