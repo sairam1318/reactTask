@@ -34,11 +34,15 @@ export function SyllabusForm(props) {
     setTopic("");
   }
   const handleDeleteTopics = (id) => {
-    setLearningObjectieve((oldlearningObjectieves) => {
-      return oldlearningObjectieves.filter((learningObjectieve, index) => {
-        return index !== id;
-      })
-    })
+    // setLearningObjectieve((oldlearningObjectieves) => {
+    //   return oldlearningObjectieves.filter((learningObjectieve, index) => {
+    //     return index !== id;
+    //   })
+    // })
+    const newLearningObjectieve = learningObjectieve.filter((Lo, index) => {
+      return index !== id
+    });
+    setLearningObjectieve(newLearningObjectieve);
     
   }
 
