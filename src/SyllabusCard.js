@@ -10,7 +10,7 @@ export function SyllabusCard(props) {
         {props.topics.map((topic, index) => {
           return <Card.Text key={`${index}-topictext`}>{topic}</Card.Text>;
         })}
-        <Button variant="primary" onClick={() => {props.handleEdit(props.id)}}>Edit</Button>
+        <Button variant="primary">Edit</Button>
       </Card.Body>
     </Card>
   );
